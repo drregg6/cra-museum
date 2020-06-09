@@ -1,6 +1,6 @@
 {
-  "name": "cra-redux-boilerplate",
-  "description": "create-react-app boilerplate with redux implimented",
+  "name": "cra-museum",
+  "description": "a museum app connects with rijksmuseum api",
   "version": "0.1.0",
   "private": true,
   "author": "Dave Regg <dave.r.regg@gmail.com",
