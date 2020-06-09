@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,11 +16,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path='/' component={Index} />
-          <Route exact path='/users' component={Users} />
-        </Switch>
+        <div className="content">
+          <Header />
+          <div className="main">
+            <Switch>
+              <Route exact path='/' component={Index} />
+              <Route exact path='/users' component={Users} />
+            </Switch>
+          </div>
+        </div>
         <Footer />
       </div>
     </Router>
