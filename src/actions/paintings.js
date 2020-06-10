@@ -7,6 +7,7 @@ export const fetchPaintings = () => async dispatch => {
   try {
     const res = await axios.get(`https://www.rijksmuseum.nl/api/en/collection?key=nxwxKjwi&involvedMaker=Rembrandt+van+Rijn`);
     const payload = res.data.artObjects;
+    console.log(payload)
     dispatch({
       type: GET_PAINTINGS,
       payload

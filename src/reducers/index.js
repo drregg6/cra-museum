@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import user from './user';
+import paintings from './paintings';
+import painting from './painting';
 
 /* root reducer */
 export default combineReducers({
-  user
+  paintings,
+  painting
 });

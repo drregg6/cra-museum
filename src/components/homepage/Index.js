@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-// import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-const Index = () => {
-  const [ paintings, updatePaintings ] = useState([])
+import { connect } from 'react-redux';
+import { fetchPaintings } from '../../actions/paintings';
+
+const Index = ({
+  fetchPaintings,
+  paintings: { paintings, isLoading }
+}) => {
+  console.log(paintings)
   useEffect(() => {
-    async function fetchData() {
-      const res = await axios.get(`https://www.rijksmuseum.nl/api/en/collection?key=nxwxKjwi&involvedMaker=Rembrandt+van+Rijn`);
-      if (res.data.artObjects) {
-        updatePaintings([...res.data.artObjects])
-      }
-    }
-    fetchData();
-  }, []);
-  if (paintings) {
-    console.log(paintings);
-  }
-  const render = paintings.length === 0 ? (
+    fetchPaintings();
+  }, [isLoading]);
+  const render = isLoading ? (
     'Still loading'
   ) : (
     paintings.map(obj => {
@@ -40,8 +36,16 @@ const Index = () => {
   )
 }
 
-// Index.propTypes = {
+Index.propTypes = {
+  fetchPaintings: PropTypes.func.isRequired,
+  paintings: PropTypes.object
+}
 
-// }
+const mapStateToProps = state => ({
+  paintings: state.paintings
+});
 
-export default Index;
+export default connect(
+  mapStateToProps,
+  { fetchPaintings }
+)(Index);
