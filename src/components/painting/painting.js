@@ -12,9 +12,19 @@ const Painting = ({
   useEffect(() => {
     fetchPainting();
   }, [fetchPainting]);
+
+  const render = isLoading ? (
+    'Whoops, still loading.'
+  ) : (
+    <div>
+      <h1>{ painting.title }</h1>
+      <img src={painting.webImage.url} alt={painting.title} style={{ width: '100%' }} />
+    </div>
+  )
   return (
     <div>
       <h1>Hello world!</h1>
+      { render }
     </div>
   )
 }
