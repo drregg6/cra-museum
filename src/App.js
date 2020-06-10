@@ -10,7 +10,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
 import Index from './components/homepage/Index';
-import Users from './components/users/Users';
+import Painting from './components/painting/painting';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <div className="main">
             <Switch>
               <Route exact path='/' component={Index} />
-              <Route exact path='/users' component={Users} />
+              <Route exact path='/painting' component={Painting} />
             </Switch>
           </div>
         </div>

@@ -8,10 +8,9 @@ const Index = ({
   fetchPaintings,
   paintings: { paintings, isLoading }
 }) => {
-  console.log(paintings)
   useEffect(() => {
     fetchPaintings();
-  }, [isLoading]);
+  }, [fetchPaintings]);
   const render = isLoading ? (
     'Still loading'
   ) : (

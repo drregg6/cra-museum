@@ -13,6 +13,7 @@ export default function(state = initialState, action) {
     case GET_PAINTING:
       return {
         ...state,
+        painting: {...payload},
         isLoading: false
       }
     default:

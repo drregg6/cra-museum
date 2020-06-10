@@ -11,7 +11,7 @@ const Nav = () => {
       </div>
       <div className={styles.links}>
         <Link to="/">Home</Link>
-        <Link to="/users">Users</Link>
+        <Link to="/painting">Painting</Link>
       </div>
     </nav>
   )
