@@ -1,21 +1,20 @@
 import {
-  GET_USERS
+  GET_PAINTING
 } from '../actions/types';
 
 const initialState = {
-  users: [],
+  paintings: {},
   isLoading: true
-}
+};
 
 export default function(state = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = actions;
   switch(type) {
-    case GET_USERS:
+    case GET_PAINTING:
       return {
         ...state,
-        users: [...payload],
         isLoading: false
-      };
+      }
     default:
       return state;
   }

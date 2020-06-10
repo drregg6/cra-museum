@@ -1,1 +1,2 @@
-export const GET_USERS = 'GET_USERS';
+export const GET_PAINTINGS = 'GET_PAINTINGS';
+export const GET_PAINTING = 'GET_PAINTING';
