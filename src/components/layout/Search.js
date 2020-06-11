@@ -1,3 +1,11 @@
+/*
+
+The purpose of Search
+= Get artist from user
+= onSubmit, search for artist in Rijksmuseum database
+
+*/
+
 import React, { useState } from 'react';
 import styles from './search.module.scss';
 import utilStyles from '../../styles/utils.module.scss';

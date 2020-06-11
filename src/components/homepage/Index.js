@@ -1,8 +1,17 @@
+/*
+
+The purpose of Index
+= Render data from store onto Index
+
+*/
+
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { fetchPaintings } from '../../actions/paintings';
+
+import Loader from '../loader/Loader';
 
 const Index = ({
   fetchPaintings,
@@ -12,7 +21,7 @@ const Index = ({
     fetchPaintings();
   }, [fetchPaintings]);
   const render = isLoading ? (
-    'Still loading'
+    <Loader />
   ) : (
     paintings.map(obj => {
       return (
