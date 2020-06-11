@@ -9,15 +9,20 @@ The purpose of Search
 import React, { useState } from 'react';
 import styles from './search.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-const Search = () => {
+import { connect } from 'react-redux';
+import { fetchPaintings } from '../../actions/paintings';
+
+const Search = ({ fetchPaintings }) => {
   const [ input, setInput ] = useState('');
 
   
   const handleSubmit = ev => {
     ev.preventDefault();
-    console.log(input);
+    
+    fetchPaintings(input);
+
     setInput('');
   }
   return (
@@ -41,8 +46,11 @@ const Search = () => {
   )
 }
 
-// Search.propTypes = {
+Search.propTypes = {
+  fetchPaintings: PropTypes.func.isRequired
+}
 
-// }
-
-export default Search;
+export default connect(
+  null,
+  { fetchPaintings }
+)(Search);

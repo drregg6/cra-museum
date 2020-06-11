@@ -2,10 +2,14 @@ import {
   GET_PAINTINGS
 } from './types';
 import axios from 'axios';
+import { strToUrl } from '../utils/strHelper';
 
-export const fetchPaintings = () => async dispatch => {
+export const fetchPaintings = (painter='rembrandt van rijn') => async dispatch => {
   try {
-    const res = await axios.get(`https://www.rijksmuseum.nl/api/en/collection?key=${process.env.REACT_APP_RIJKSMUSEUM_API}&involvedMaker=Rembrandt+van+Rijn`);
+    const painterUrl = strToUrl(painter);
+    const url = `https://www.rijksmuseum.nl/api/en/collection?key=${process.env.REACT_APP_RIJKSMUSEUM_API}&q=${painterUrl}&s=relevance&ps=150&imgonly=true`;
+    console.log(url);
+    const res = await axios.get(url);
     const payload = res.data.artObjects;
     console.log(payload);
     dispatch({

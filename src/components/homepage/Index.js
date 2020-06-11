@@ -1,5 +1,8 @@
 /*
 
+https://data.rijksmuseum.nl/object-metadata/api/
+https://www.rijksmuseum.nl/en/search/advanced
+
 The purpose of Index
 = Render data from store onto Index
 
@@ -14,12 +17,11 @@ import { fetchPaintings } from '../../actions/paintings';
 import Loader from '../loader/Loader';
 
 const Index = ({
-  fetchPaintings,
   paintings: { paintings, isLoading }
 }) => {
-  useEffect(() => {
-    fetchPaintings();
-  }, [fetchPaintings]);
+  // useEffect(() => {
+  //   fetchPaintings();
+  // }, [fetchPaintings]);
   const render = isLoading ? (
     <Loader />
   ) : (
@@ -27,9 +29,9 @@ const Index = ({
       return (
         <div key={obj.id}>
           <h1>{obj.title}</h1>
-          <img src={obj.webImage.url} alt="" style={{
+          { obj.webImage && <img src={obj.webImage.url} alt="" style={{
             width: '50vw'
-          }} />
+          }} /> }
         </div>
       )
     })
@@ -45,7 +47,6 @@ const Index = ({
 }
 
 Index.propTypes = {
-  fetchPaintings: PropTypes.func.isRequired,
   paintings: PropTypes.object
 }
 
@@ -55,5 +56,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPaintings }
+  null
 )(Index);
