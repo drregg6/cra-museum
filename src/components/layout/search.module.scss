@@ -1,0 +1,20 @@
+@import '../../styles/colors';
+
+.form {
+  display: flex;
+}
+
+.input {
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  background: $white-color;
+  color: $black-color;
+  font-weight: 400;
+  border: 1px solid $black-color;
+  outline: none;
+}
+
+.searchBar {
+  width: 30rem;
+  border-right: none;
+}

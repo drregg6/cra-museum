@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import styles from './nav.module.scss';
 // import PropTypes from 'prop-types';
 
+import Search from './Search';
+
 const Nav = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.title}>
-        <Link to="/">Home</Link>
+        <Link to="/">Museum</Link>
       </div>
-      <input type="text" placeholder="Search" />
+      <Search />
     </nav>
   )
 }

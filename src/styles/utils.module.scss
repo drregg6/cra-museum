@@ -1,0 +1,12 @@
+@import 'colors';
+
+.button {
+  border: 1px solid $black-color;
+  background: $white-color;
+  color: $secondary-color;
+  transition: all .15s;
+
+  &:hover {
+    color: $secondary-light;
+  }
+}
