@@ -9,10 +9,7 @@ const Nav = () => {
       <div className={styles.title}>
         <Link to="/">Home</Link>
       </div>
-      <div className={styles.links}>
-        <Link to="/">Home</Link>
-        <Link to="/painting">Painting</Link>
-      </div>
+      <input type="text" placeholder="Search" />
     </nav>
   )
 }

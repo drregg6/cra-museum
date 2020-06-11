@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPainting } from '../../actions/painting';
 
+import Loader from '../loader/Loader';
+
 const Painting = ({
   fetchPainting,
   painting: { painting, isLoading }
@@ -14,11 +16,11 @@ const Painting = ({
   }, [fetchPainting]);
 
   const render = isLoading ? (
-    'Whoops, still loading.'
+    <Loader />
   ) : (
     <div>
       <h1>{ painting.title }</h1>
-      <img src={painting.webImage.url} alt={painting.title} style={{ width: '100%' }} />
+      <img src={painting.webImage.url} alt={painting.title} style={{ width: '95vw', marginLeft: '-12.5rem', padding: 0 }} />
     </div>
   )
   return (

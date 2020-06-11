@@ -1,5 +1,5 @@
-# Title
-> A quick blurb of the purpose of this app. Who was it built by, who was it built for, why was it built, and what does it use?
+# CRA-MUSEUM
+> The CRA-Museum App is developed by Dave Regg and built for those of us who cannot visit the Rijksmuseum in person. For that reason, users may search for an artist or painting, display search results, and get a close-up view of that painting with some details about the painting.
 
 ## Table of contents
 * [General info](#general-info)
