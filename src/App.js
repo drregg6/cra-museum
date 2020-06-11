@@ -1,3 +1,21 @@
+/*
+
+TODOS:
+= Pagination on Index page
+    - https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
+    - npm install react-pagination
+= Implement Painting page
+= Styling
+= Random artist on load
+    - van Gogh, vermeer, picasso
+= Search history
+    - history reducer
+    - history Component sidebar
+    - if { length != 0 display history.slice(0,6) }
+    - expand on separate page(?)
+
+*/
+
 import React from 'react';
 import './App.scss';
 import {

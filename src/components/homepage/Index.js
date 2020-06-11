@@ -8,40 +8,33 @@ The purpose of Index
 
 */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-import { connect } from 'react-redux';
-import { fetchPaintings } from '../../actions/paintings';
+import styles from './index.module.scss';
 
 import Loader from '../loader/Loader';
+
+import { connect } from 'react-redux';
 
 const Index = ({
   paintings: { paintings, isLoading }
 }) => {
-  // useEffect(() => {
-  //   fetchPaintings();
-  // }, [fetchPaintings]);
   const render = isLoading ? (
     <Loader />
   ) : (
-    paintings.map(obj => {
+    paintings.map(painting => {
       return (
-        <div key={obj.id}>
-          <h1>{obj.title}</h1>
-          { obj.webImage && <img src={obj.webImage.url} alt="" style={{
-            width: '50vw'
-          }} /> }
+        <div key={painting.id} className={styles.painting}>
+          <h1>{painting.title}</h1>
+          <img src={painting.webImage.url} alt="" />
+          <h2>{painting.principalOrFirstMaker}</h2>
         </div>
       )
     })
   )
   return (
-    <div>
-      <h1>Welcome to the Homepage</h1>
-      <div>
-        { render }
-      </div>
+    <div className={styles.paintings}>
+      { render }
     </div>
   )
 }
