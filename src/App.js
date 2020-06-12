@@ -6,13 +6,10 @@ TODOS:
     - npm install react-pagination
 = Implement Painting page
 = Styling
-= Random artist on load
-    - van Gogh, vermeer, picasso
+    - mobile
+= Text on load ('Search for an artist!')
 = Search history
-    - history reducer
-    - history Component sidebar
-    - if { length != 0 display history.slice(0,6) }
-    - expand on separate page(?)
+    - Click a name to research that artist
 
 */
 

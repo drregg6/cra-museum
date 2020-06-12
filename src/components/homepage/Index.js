@@ -19,9 +19,7 @@ import { connect } from 'react-redux';
 const Index = ({
   paintings: { paintings, isLoading }
 }) => {
-  const render = isLoading ? (
-    <Loader />
-  ) : (
+  const render = !isLoading && (
     paintings.map(painting => {
       return (
         <div key={painting.id} className={styles.painting}>
@@ -33,8 +31,15 @@ const Index = ({
     })
   )
   return (
-    <div className={styles.paintings}>
-      { render }
+    <div className={styles.homepage}>
+      {
+        isLoading && (
+          <Loader />
+        )
+      }
+      <div className={styles.paintings}>
+        { render }
+      </div>
     </div>
   )
 }

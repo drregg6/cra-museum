@@ -4,20 +4,45 @@ import styles from './history.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 
 import { connect } from 'react-redux';
-import { deleteHistory } from '../../actions/history';
+import { fetchPaintings } from '../../actions/paintings';
+import {
+  addPainter,
+  deleteHistory
+} from '../../actions/history';
 
 export const History = ({
+  addPainter,
+  fetchPaintings,
   deleteHistory,
   history: { history, isLoading }
 }) => {
   const [ expand, toggleExpand ] = useState(false);
+  const handleClick = (painter) => {
+    fetchPaintings(painter);
+    addPainter(painter);
+  }
+
   const render = isLoading ? ('') : expand ? (
     history.map(painter => {
-      return <li className={styles.item}>{painter}</li>
+      return (
+        <li
+          className={styles.item}
+          onClick={() => handleClick(painter)}
+        >
+          {painter}
+        </li>
+      )
     })
   ) : (
     history.slice(0,5).map(painter => {
-      return <li className={styles.item}>{painter}</li>
+      return (
+        <li
+          className={styles.item}
+          onClick={() => handleClick(painter)}
+        >
+          {painter}
+        </li>
+      )
     })
   )
   return (
@@ -56,7 +81,9 @@ export const History = ({
 }
 
 History.propTypes = {
+  fetchPaintings: PropTypes.func.isRequired,
   deleteHistory: PropTypes.func.isRequired,
+  addPainter: PropTypes.func.isRequired,
   history: PropTypes.object
 }
 
@@ -66,5 +93,9 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteHistory }
+  {
+    addPainter,
+    deleteHistory,
+    fetchPaintings
+  }
 )(History);
