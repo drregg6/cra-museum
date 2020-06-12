@@ -1,18 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import styles from './footer.module.scss';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.footer}>
       <p>
-        This is the footer
+        Copyright &copy;{new Date().getFullYear()} <a href="http://www.daveregg.com" target="_blank" rel="noopener noreferrer">Dave Regg</a>
       </p>
     </footer>
   )
 }
-
-// Footer.propTypes = {
-
-// }
 
 export default Footer;
