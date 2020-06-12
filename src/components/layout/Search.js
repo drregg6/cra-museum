@@ -13,8 +13,12 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { fetchPaintings } from '../../actions/paintings';
+import { addPainter } from '../../actions/history';
 
-const Search = ({ fetchPaintings }) => {
+const Search = ({
+  fetchPaintings,
+  addPainter
+}) => {
   const [ input, setInput ] = useState('');
 
   
@@ -22,6 +26,7 @@ const Search = ({ fetchPaintings }) => {
     ev.preventDefault();
     
     fetchPaintings(input);
+    addPainter(input);
 
     setInput('');
   }
@@ -52,5 +57,8 @@ Search.propTypes = {
 
 export default connect(
   null,
-  { fetchPaintings }
+  {
+    fetchPaintings,
+    addPainter
+  }
 )(Search);
