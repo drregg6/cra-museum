@@ -12,8 +12,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 
-import Loader from '../loader/Loader';
-
 import { connect } from 'react-redux';
 
 const Index = ({
@@ -34,7 +32,7 @@ const Index = ({
     <div className={styles.homepage}>
       {
         isLoading && (
-          <Loader />
+          <p>Search for an artist in the searchbox above!</p>
         )
       }
       <div className={styles.paintings}>

@@ -5,6 +5,7 @@
   background: $white-color;
   color: $secondary-color;
   transition: all .15s;
+  cursor: pointer;
 
   &:hover {
     color: $secondary-light;

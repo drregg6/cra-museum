@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .history {
   width: 90vw;
   display: flex;
@@ -15,9 +17,14 @@
   list-style: none;
   font-size: 1rem;
   margin-right: 1rem;
+  color: $secondary-color;
+  cursor: pointer;
 
   &:last-child {
     margin-right: 0;
+  }
+  &:hover {
+    color: $secondary-light;
   }
 }
 
@@ -28,6 +35,10 @@
   justify-content: center;
 }
 
-.button {
+.expand {
   margin-right: 1rem;
+}
+
+.button {
+  padding: .5rem .75rem;
 }

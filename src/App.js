@@ -7,9 +7,6 @@ TODOS:
 = Implement Painting page
 = Styling
     - mobile
-= Text on load ('Search for an artist!')
-= Search history
-    - Click a name to research that artist
 
 */
 

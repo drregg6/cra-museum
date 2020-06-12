@@ -56,7 +56,7 @@ export const History = ({
           {
             history.length > 5 && (
               <button
-                className={`${utilStyles.button} ${styles.button}`}
+                className={`${utilStyles.button} ${styles.expand} ${styles.button}`}
                 onClick={() => toggleExpand(!expand)}
               >
                 { expand ? 'Less' : 'More' }
@@ -66,7 +66,7 @@ export const History = ({
             {
               history.length > 0 && (
                 <button
-                  className={`${utilStyles.button}`}
+                  className={`${utilStyles.button} ${styles.button}`}
                   onClick={() => deleteHistory()}
                 >
                   Delete History
