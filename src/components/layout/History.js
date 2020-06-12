@@ -21,29 +21,37 @@ export const History = ({
     })
   )
   return (
-    <ul className={styles.list}>
-      { render }
-      {
-        history.length > 5 && (
-          <button
-            className={`${utilStyles.button}`}
-            onClick={() => toggleExpand(!expand)}
-          >
-            { expand ? 'Less' : 'More' }
-          </button>
-        )
-      }
+    <div className={styles.history}>
+      <ul className={styles.list}>
+        { render }
+      </ul>
       {
         history.length > 0 && (
-          <button
-            className={`${utilStyles.button}`}
-            onClick={() => deleteHistory()}
-          >
-            Delete History
-          </button>
-        )
+        <div className={styles.buttons}>
+          {
+            history.length > 5 && (
+              <button
+                className={`${utilStyles.button} ${styles.button}`}
+                onClick={() => toggleExpand(!expand)}
+              >
+                { expand ? 'Less' : 'More' }
+              </button>
+            )
+            }
+            {
+              history.length > 0 && (
+                <button
+                  className={`${utilStyles.button}`}
+                  onClick={() => deleteHistory()}
+                >
+                  Delete History
+                </button>
+              )
+            }
+          </div>
+          )
       }
-    </ul>
+    </div>
   )
 }
 

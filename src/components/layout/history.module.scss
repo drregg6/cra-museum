@@ -1,5 +1,11 @@
-.list {
+.history {
   width: 90vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -13,4 +19,15 @@
   &:last-child {
     margin-right: 0;
   }
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button {
+  margin-right: 1rem;
 }
