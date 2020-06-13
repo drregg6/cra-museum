@@ -3,7 +3,7 @@ export const strToUrl = str => {
   return arr.join('+');
 }
 
-export const shortenTitle = str => {
+export const shortenToFifty = str => {
   if (str.length > 51) {
     return `${str.slice(0,50)}...`;
   }

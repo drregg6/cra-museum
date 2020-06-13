@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './history.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 import { useHistory } from 'react-router-dom';
+import { shortenToFifty } from '../../utils/strHelper';
 
 import { connect } from 'react-redux';
 import { fetchPaintings } from '../../actions/paintings';
@@ -34,7 +35,7 @@ export const History = ({
           className={styles.item}
           onClick={() => handleClick(painter)}
         >
-          {painter}
+          {shortenToFifty(painter)}
         </li>
       )
     })
@@ -45,7 +46,7 @@ export const History = ({
           className={styles.item}
           onClick={() => handleClick(painter)}
         >
-          {painter}
+          {shortenToFifty(painter)}
         </li>
       )
     })

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import styles from './painting.module.scss';
 import { useParams } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -24,13 +25,13 @@ const Painting = ({
   const render = isLoading ? (
     <Loader />
   ) : (
-    <div>
+    <>
       <h1>{ painting.title }</h1>
-      <img src={painting.webImage.url} alt={painting.title} style={{ width: '95vw', marginLeft: '-12.5rem', padding: 0 }} />
-    </div>
+      <img src={painting.webImage.url} alt={painting.title} />
+    </>
   )
   return (
-    <div>
+    <div className={styles.painting}>
       { render }
     </div>
   )
