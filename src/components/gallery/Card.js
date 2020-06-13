@@ -16,13 +16,15 @@ const Card = ({
   }
   return (
     <div className={styles.card}>
-      <Link to={`/painting/${id}`}>
+      <Link to={`/painting/${id}`} className={styles.imageLink}>
         <img src={image.url} alt={desc} />
       </Link>
-      <Link to={`/painting/${id}`}>
-        <h1>{shortenToFifty(title)}</h1>
-      </Link>
-      <h2>{painter}</h2>
+      <div className={styles.details}>
+        <Link to={`/painting/${id}`}>
+          <h1>{shortenToFifty(title)}</h1>
+        </Link>
+        <h2>{painter}</h2>
+      </div>
     </div>
   )
 }

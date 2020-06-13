@@ -1,5 +1,35 @@
-.painting {
-  img {
-    width: 100%;
+@import '../../styles/colors';
+
+.image {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: $primary-color;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  p {
+    font-style: italic;
+  }
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.techniques {
+  span {
+    padding: .5rem 1rem;
+    border: 1px solid $cold-color;
+    border-radius: 5px;
   }
 }
