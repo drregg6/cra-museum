@@ -1,0 +1,23 @@
+@import '../../styles/colors';
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+.page {
+  a {
+    border: 1px solid $black-color;
+    border-right: none;
+    padding: 1rem;
+  }
+
+  &:last-child {
+    a {
+      border-right: 1px solid $black-color;
+    }
+  }
+}

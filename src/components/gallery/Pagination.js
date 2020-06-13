@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './pagination.module.scss';
 import { Link } from 'react-router-dom';
 
 const Pagination = ({
@@ -8,23 +9,24 @@ const Pagination = ({
   paginate
 }) => {
   const pageNumbers = [];
+  const limit = Math.ceil(totalPaintings / paintingsPerPage)
 
-  for(let i = 1; i <= Math.ceil(totalPaintings / paintingsPerPage); i++) {
+  for (let i = 1; i <= limit; i++) {
     pageNumbers.push(i);
   }
 
   return (
-    <div>
+    <ul className={styles.pagination}>
       {
         pageNumbers.map(number => {
           return (
-            <li key={number}>
+            <li key={number} className={styles.page}>
               <Link to={`/gallery/${number}`} onClick={() => paginate(number)}>{number}</Link>
             </li>
           )
         })
       }
-    </div>
+    </ul>
   )
 }
 

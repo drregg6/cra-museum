@@ -16,7 +16,7 @@ const Painting = ({
   const { id } = useParams();
   useEffect(() => {
     fetchPainting(id);
-  }, [fetchPainting]);
+  }, [fetchPainting, id]);
   if (painting) {
     addPainter(painting.title);
   }

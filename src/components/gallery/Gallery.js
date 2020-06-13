@@ -43,6 +43,15 @@ const Gallery = ({
           <Loader />
         )
       }
+      {
+        !isLoading && (
+          <Pagination
+            paintingsPerPage={paintingsPerPage}
+            totalPaintings={paintings.length}
+            paginate={paginate}
+          />
+        )
+      }
       <div className={styles.paintings}>
         { render }
       </div>
