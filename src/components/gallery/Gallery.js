@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './gallery.module.scss';
-import { Link } from 'react-router-dom';
 
+import Card from './Card';
 import Pagination from './Pagination';
 import Loader from '../loader/Loader';
 
@@ -18,20 +18,6 @@ const Gallery = ({
   const indexOfFirstPainting = indexOfLastPainting - paintingsPerPage;
   const currentPaintings = paintings.slice(indexOfFirstPainting, indexOfLastPainting);
 
-  const render = !isLoading && (
-    currentPaintings.map(painting => {
-      return (
-        <div key={painting.id} className={styles.painting}>
-          <Link to={`/painting/${painting.objectNumber}`}>
-            <h1>{painting.title}</h1>
-            <img src={painting.webImage.url} alt="" />
-            <h2>{painting.principalOrFirstMaker}</h2>
-          </Link>
-        </div>
-      )
-    })
-  )
-
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
@@ -44,6 +30,19 @@ const Gallery = ({
         )
       }
       {
+        (!isLoading && paintings.length === 0) && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            Sorry, can't find anything for that search.
+          </div>
+        )
+      }
+      {
         !isLoading && (
           <Pagination
             paintingsPerPage={paintingsPerPage}
@@ -53,7 +52,23 @@ const Gallery = ({
         )
       }
       <div className={styles.paintings}>
-        { render }
+        {
+          (!isLoading) && (
+            currentPaintings.map(painting => {
+              const { objectNumber, id, longTitle, title, webImage, principalOrFirstMaker } = painting;
+              return (
+                <Card
+                  key={id}
+                  desc={longTitle}
+                  id={objectNumber}
+                  title={title}
+                  image={webImage}
+                  painter={principalOrFirstMaker}
+                />
+              )
+            })
+          )
+        }
       </div>
       {
         !isLoading && (

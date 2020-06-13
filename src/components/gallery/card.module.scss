@@ -1,0 +1,23 @@
+@import '../../styles/colors';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 25vw;
+  img {
+    width: 100%;
+    border: 5px solid $primary-color;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    border-bottom: none;
+    transition: all .2s;
+  }
+  &:hover {
+    img {
+      opacity: .5;
+    }
+  }
+}
