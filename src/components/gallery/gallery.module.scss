@@ -1,0 +1,18 @@
+.paintings {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  row-gap: 2.5rem;
+  column-gap: 1rem;
+}
+
+.painting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 25vw;
+  }
+}

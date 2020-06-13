@@ -30,8 +30,8 @@ const Search = ({
     addPainter(input);
     setInput('');
 
-    if (history.pathname !== '/') {
-      history.push('/')
+    if (history.pathname !== '/gallery/1') {
+      history.push('/gallery/1')
     }
   }
   return (

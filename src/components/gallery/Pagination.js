@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Pagination = ({
   paintingsPerPage,
@@ -18,7 +19,7 @@ const Pagination = ({
         pageNumbers.map(number => {
           return (
             <li key={number}>
-              <span onClick={() => paginate(number)}>{number}</span>
+              <Link to={`/gallery/${number}`} onClick={() => paginate(number)}>{number}</Link>
             </li>
           )
         })

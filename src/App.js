@@ -1,10 +1,13 @@
 /*
 
+THANKS:
+= Rijksmuseum API
+= TraversyMedia for Pagination tutorial
+    - https://www.youtube.com/watch?v=IYCa1F-OWmk
+
 TODOS:
 = Pagination on Index page
-    - https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
-    - npm install react-paginate
-= Implement Painting page
+    - Cues as to which page you're on in pagination
 = Styling
     - mobile
 
@@ -23,6 +26,7 @@ import Footer from './components/layout/Footer';
 
 import Index from './components/homepage/Index';
 import Painting from './components/painting/Painting';
+import Gallery from './components/gallery/Gallery';
 
 function App() {
   return (
@@ -33,7 +37,8 @@ function App() {
           <div className="main">
             <Switch>
               <Route exact path='/' component={Index} />
-              <Route exact path='/Painting/:id' component={Painting} />
+              <Route exact path='/gallery/:page' component={Gallery} />
+              <Route exact path='/painting/:id' component={Painting} />
             </Switch>
           </div>
         </div>

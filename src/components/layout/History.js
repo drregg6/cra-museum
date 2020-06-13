@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './history.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
+import { useHistory } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { fetchPaintings } from '../../actions/paintings';
@@ -16,10 +17,14 @@ export const History = ({
   deleteHistory,
   history: { history, isLoading }
 }) => {
+  const browserHistory = useHistory();
   const [ expand, toggleExpand ] = useState(false);
   const handleClick = (painter) => {
     fetchPaintings(painter);
     addPainter(painter);
+    if (browserHistory.pathname !== `/gallery/1`) {
+      browserHistory.push('/gallery/1');
+    }
   }
 
   const render = isLoading ? ('') : expand ? (
