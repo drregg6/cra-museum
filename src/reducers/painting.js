@@ -4,7 +4,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  paintings: {},
+  paintings: null,
   isLoading: true
 };
 
@@ -20,7 +20,8 @@ export default function(state = initialState, action) {
     case CLEAR_PAINTING:
       return {
         ...state,
-        painting: {}
+        painting: null,
+        isLoading: false
       }
     default:
       return state;
