@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { fetchPainting } from '../../actions/painting';
@@ -10,9 +11,9 @@ const Painting = ({
   fetchPainting,
   painting: { painting, isLoading }
 }) => {
-  console.log(painting);
+  const { id } = useParams();
   useEffect(() => {
-    fetchPainting();
+    fetchPainting(id);
   }, [fetchPainting]);
 
   const render = isLoading ? (
@@ -33,6 +34,8 @@ const Painting = ({
 
 Painting.propTypes = {
   fetchPainting: PropTypes.func.isRequired,
+  clearData: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   painting: PropTypes.object
 }
 
@@ -42,5 +45,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPainting }
+  {
+    fetchPainting
+  }
 )(Painting);

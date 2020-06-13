@@ -3,9 +3,9 @@ import {
 } from './types';
 import axios from 'axios';
 
-export const fetchPainting = () => async dispatch => {
+export const fetchPainting = (id) => async dispatch => {
   try {
-    const res = await axios.get(`https://www.rijksmuseum.nl/api/en/collection/SK-C-5?key=${process.env.REACT_APP_RIJKSMUSEUM_API}`);
+    const res = await axios.get(`https://www.rijksmuseum.nl/api/en/collection/${id}?key=${process.env.REACT_APP_RIJKSMUSEUM_API}`);
     const payload = res.data.artObject;
     dispatch({
       type: GET_PAINTING,

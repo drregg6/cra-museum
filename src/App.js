@@ -3,7 +3,7 @@
 TODOS:
 = Pagination on Index page
     - https://www.digitalocean.com/community/tutorials/how-to-build-custom-pagination-with-react
-    - npm install react-pagination
+    - npm install react-paginate
 = Implement Painting page
 = Styling
     - mobile
@@ -22,7 +22,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
 import Index from './components/homepage/Index';
-import Painting from './components/painting/painting';
+import Painting from './components/painting/Painting';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
           <div className="main">
             <Switch>
               <Route exact path='/' component={Index} />
-              <Route exact path='/painting' component={Painting} />
+              <Route exact path='/Painting/:id' component={Painting} />
             </Switch>
           </div>
         </div>

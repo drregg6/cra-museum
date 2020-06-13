@@ -11,6 +11,7 @@ The purpose of Index
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.module.scss';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -21,9 +22,11 @@ const Index = ({
     paintings.map(painting => {
       return (
         <div key={painting.id} className={styles.painting}>
-          <h1>{painting.title}</h1>
-          <img src={painting.webImage.url} alt="" />
-          <h2>{painting.principalOrFirstMaker}</h2>
+          <Link to={`/painting/${painting.objectNumber}`}>
+            <h1>{painting.title}</h1>
+            <img src={painting.webImage.url} alt="" />
+            <h2>{painting.principalOrFirstMaker}</h2>
+          </Link>
         </div>
       )
     })

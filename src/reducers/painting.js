@@ -1,5 +1,6 @@
 import {
-  GET_PAINTING
+  GET_PAINTING,
+  CLEAR_PAINTING
 } from '../actions/types';
 
 const initialState = {
@@ -15,6 +16,11 @@ export default function(state = initialState, action) {
         ...state,
         painting: {...payload},
         isLoading: false
+      }
+    case CLEAR_PAINTING:
+      return {
+        ...state,
+        painting: {}
       }
     default:
       return state;
