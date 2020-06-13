@@ -7,12 +7,10 @@
   column-gap: 1rem;
 }
 
-.painting {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 25vw;
+@media only screen and (max-width: 520px) {
+  .paintings {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
   }
 }

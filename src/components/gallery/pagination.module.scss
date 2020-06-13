@@ -21,3 +21,14 @@
     }
   }
 }
+
+@media only screen and (max-width: 520px) {
+  .pagination {
+    width: 90vw;
+  }
+  .page {
+    a {
+      padding: .65rem;
+    }
+  }
+}

@@ -44,3 +44,16 @@
 .button {
   padding: .5rem .75rem;
 }
+
+@media only screen and (max-width: 520px) {
+  .list {
+    flex-direction: column;
+  }
+  .item {
+    margin-bottom: 1rem;
+    margin-right: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
