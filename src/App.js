@@ -6,10 +6,7 @@ THANKS:
     - https://www.youtube.com/watch?v=IYCa1F-OWmk
 
 TODOS:
-= Pagination on Index page
-    - Cues as to which page you're on in pagination
-= Styling
-    - mobile
+= Clicking History item will not push to /gallery/1
 
 */
 
