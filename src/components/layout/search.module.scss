@@ -25,5 +25,11 @@
   }
   .searchBar {
     width: 60vw;
+    margin-right: 1rem;
+  }
+  .search {
+    border: 1px solid $black-color;
+    background: $white-color;
+    color: $secondary-color;
   }
 }

@@ -49,7 +49,7 @@ const Search = ({
       <input
         type="submit"
         value="Search"
-        className={`${utilStyles.button} ${styles.input}`}
+        className={`${utilStyles.button} ${styles.input} ${styles.search}`}
       />
     </form>
   )
