@@ -23,9 +23,7 @@ export const History = ({
   const handleClick = (painter) => {
     fetchPaintings(painter);
     addPainter(painter);
-    if (browserHistory.pathname !== `/gallery/1`) {
-      browserHistory.push('/gallery/1');
-    }
+    browserHistory.push(`/gallery/1`);
   }
 
   const render = isLoading ? ('') : expand ? (
