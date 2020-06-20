@@ -13,43 +13,46 @@
 * [Contact](#contact)
 
 ## General info
-A longer version of the description featuring details of the project. It might explain what the user is capable of doing. It could highlight the technologies used in the project. It could detail the flow of the project, like CRUD, and how it interacts with certain tech. User restrictions. Etc.
+The Museum Gallery is created and maintained by me, Dave Regg. It was created for the purpose of not only revamping the existing [Museum App](https://github.com/drregg6/museum-app) created in 2019, but to also make use of my [Create-React-App Boilerplate](https://github.com/drregg6/cra-redux-boilerplate) to see if everything works. The main purpose of The Museum Gallery is to give users an experience through the [Rijksmuseum API](https://rijksmuseum.nl), allowing them to search for an artist or painting and to get details of those paintings that are available through the API.
 
 ## Screenshots
-![screenshot](./src/images/imagename.png)
+![screenshot](./src/images/the-museum-gallery-ss.jpg)
 
 ## Technologies
 * Node - version 12.3.1
 * React - version 16.13.1
 * Sass - version 1.26.5
+* Axios - version 0.19.2
+* Redux - version 4.0.5
+* Redux-thunk - version 2.3.0
+* Redux-devtools-extension - version 2.13.8
 
 ## Setup
 1. Clone the repo
 ```sh
-git clone https://github.com/drregg6/repository.git
+git clone https://github.com/drregg6/cra-museum.git
 ```
 2. Install NPM packages
 ```sh
 npm install
 ```
-3. [Get API key, Highlight changes that need to be made, etc...]
+3. Retrieve an API key from [Rijksmuseum](https://www.rijksmuseum.nl)
 
 ## Features
 List of features ready and TODOs for future development
-* ADD FEATURE
-* ADD FEATURE
-* ADD FEATURE
+* Search the expansive Rijksmuseum API
+* Thumbnail images and details
+* Search history
 
 To-do list:
-* ADD TODO
-* ADD TODO
-* ADD TODO
+* Check for bugs
+* Change the color scheme
 
 ## Status
-Project is: _in progress_, _launched_, or _done_
+Project is: The project is _launched_, located [on Heroku here](https://salty-hamlet-32931.herokuapp.com/), however there appears to be some bugs that need to be sorted out.
 
 ## Inspiration
-The project is a inspired by [Vishang](https://dev.to/vish448/create-react-project-without-create-react-app-3goh)
+The project is a inspired by [The Museum App](https://github.com/drregg6/museum-app) created by me in 2019
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
@@ -57,4 +60,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 Dave Regg - [@daveregg](https://www.twitter.com/daveregg) - dave.r.regg@gmail.com
 
-Project Link: [Title goes here](URL goes here)
+Project Link: [The Museum Gallery](https://salty-hamlet-32931.herokuapp.com/)
