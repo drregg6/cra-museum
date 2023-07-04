@@ -19,8 +19,4 @@ const Index = () => {
   )
 }
 
-// Index.propTypes = {
-  
-// }
-
 export default Index;
