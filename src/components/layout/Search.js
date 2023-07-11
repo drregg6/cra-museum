@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import styles from './search.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { fetchPaintings } from '../../actions/paintings';
@@ -21,7 +21,7 @@ const Search = ({
   addPainter
 }) => {
   const [ input, setInput ] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
   
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -30,9 +30,7 @@ const Search = ({
     addPainter(input);
     setInput('');
 
-    if (history.pathname !== '/gallery/1') {
-      history.push('/gallery/1')
-    }
+    navigate('/gallery/1');
   }
   return (
     <form

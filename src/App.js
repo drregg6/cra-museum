@@ -14,7 +14,7 @@ import React from 'react';
 import './App.scss';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from 'react-router-dom';
 
@@ -32,11 +32,11 @@ function App() {
         <div className="content">
           <Header />
           <div className="main">
-            <Switch>
-              <Route exact path='/' component={Index} />
-              <Route exact path='/gallery/:page' component={Gallery} />
-              <Route exact path='/painting/:id' component={Painting} />
-            </Switch>
+            <Routes>
+              <Route exact path='/' element={<Index />} />
+              <Route exact path='/gallery/:page' element={<Gallery />} />
+              <Route exact path='/painting/:id' element={<Painting />} />
+            </Routes>
           </div>
         </div>
         <Footer />

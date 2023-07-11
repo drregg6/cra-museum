@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './history.module.scss';
 import utilStyles from '../../styles/utils.module.scss';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { shortenToFifty } from '../../utils/strHelper';
 
 import { connect } from 'react-redux';
@@ -18,12 +18,12 @@ export const History = ({
   deleteHistory,
   history: { history, isLoading }
 }) => {
-  const browserHistory = useHistory();
+  const navigate = useNavigate();
   const [ expand, toggleExpand ] = useState(false);
   const handleClick = (painter) => {
     fetchPaintings(painter);
     addPainter(painter);
-    browserHistory.push(`/gallery/1`);
+    navigate(`/gallery/1`);
   }
 
   const render = isLoading ? ('') : expand ? (
