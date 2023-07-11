@@ -8,7 +8,7 @@ const initialState = {
   isLoading: true
 };
 
-export default function( state = initialState, action ) {
+export default function historyReducer( state = initialState, action ) {
   const { payload, type } = action;
   switch(type) {
     case ADD_PAINTER:

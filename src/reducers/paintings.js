@@ -7,7 +7,7 @@ const initialState = {
   isLoading: true
 };
 
-export default function(state = initialState, action) {
+export default function paintingsReducer(state = initialState, action) {
   const { type, payload } = action;
   switch(type) {
     case GET_PAINTINGS:
