@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styles from './pagination.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -28,10 +27,5 @@ const Pagination = ({ paintingsPerPage, totalPaintings, paginate }) => {
 	);
 };
 
-Pagination.propTypes = {
-	paintingsPerPage: PropTypes.number,
-	totalPaintings: PropTypes.number,
-	paginate: PropTypes.func,
-};
 
 export default Pagination;

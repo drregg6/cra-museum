@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './gallery.module.scss';
+import { useSelector } from 'react-redux';
 
 import Card from './Card';
 import Pagination from './Pagination';
 import Loader from '../loader/Loader';
 
-import { connect } from 'react-redux';
+const IIIF_BASE = 'https://www.artic.edu/iiif/2';
 
-const Gallery = ({ paintings: { paintings, isLoading } }) => {
+const Gallery = () => {
+	const { paintings, isLoading } = useSelector((state) => state.paintings);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [paintingsPerPage] = useState(12);
 
@@ -19,9 +20,7 @@ const Gallery = ({ paintings: { paintings, isLoading } }) => {
 		indexOfLastPainting,
 	);
 
-	const paginate = (pageNumber) => {
-		setCurrentPage(pageNumber);
-	};
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
 		<div>
@@ -47,8 +46,18 @@ const Gallery = ({ paintings: { paintings, isLoading } }) => {
 			<div className={styles.paintings}>
 				{!isLoading &&
 					currentPaintings.map((painting) => {
-						const { id, title, image_id } = painting;
-						return <Card key={id} title={title} image={image_id} />;
+						const { id, title, image_id, artist_display } =
+							painting;
+						const imageUrl = `${IIIF_BASE}/${image_id}/full/400,/0/default.jpg`;
+						return (
+							<Card
+								key={id}
+								id={String(id)}
+								title={title}
+								imageUrl={imageUrl}
+								painter={artist_display}
+							/>
+						);
 					})}
 			</div>
 			{!isLoading && (
@@ -62,12 +71,4 @@ const Gallery = ({ paintings: { paintings, isLoading } }) => {
 	);
 };
 
-Gallery.propTypes = {
-	paintings: PropTypes.object,
-};
-
-const mapStateToProps = (state) => ({
-	paintings: state.paintings,
-});
-
-export default connect(mapStateToProps, null)(Gallery);
+export default Gallery;

@@ -1,16 +1,14 @@
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+import paintingsReducer from './slices/paintingsSlice';
+import paintingReducer from './slices/paintingSlice';
+import historyReducer from './slices/historySlice';
 
-const initialState = {};
-const middleware = [thunk];
-
-/* createStore( reducer, initState, middleware ) */
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+const store = configureStore({
+	reducer: {
+		paintings: paintingsReducer,
+		painting: paintingReducer,
+		history: historyReducer,
+	},
+});
 
 export default store;

@@ -17,6 +17,7 @@ TODOS:
   - Append data.image_id
   - Then some more configs: /full/843,/0/default.jpg
 
+= IIIF is throwing a CORS error - need to use axios in useEffect to fetch the image and then set it as a blob url in state
 */
 
 import './App.scss';
