@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const Anthropic = require('@anthropic-ai/sdk');
 const port = process.env.PORT || 5000;
 
+app.use(cors({ origin: process.env.NETLIFY_URL || 'http://localhost:5173' }));
 app.use(express.json());
 
 app.post('/api/art-guide', async (req, res) => {

@@ -12,7 +12,7 @@ export const fetchPainting = createAsyncThunk(
 export const generateArtGuide = createAsyncThunk(
 	'painting/generateArtGuide',
 	async (painting) => {
-		const res = await axios.post('/api/art-guide', {
+		const res = await axios.post(`${import.meta.env.VITE_API_URL || ''}/api/art-guide`, {
 			title: painting.title,
 			artist_title: painting.artist_title,
 			date_display: painting.date_display,
