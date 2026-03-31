@@ -1,8 +1,5 @@
 /*
 
-https://data.rijksmuseum.nl/object-metadata/api/
-https://www.rijksmuseum.nl/en/search/advanced
-
 The purpose of Index
 = Render data from store onto Index
 
