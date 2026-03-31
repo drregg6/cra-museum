@@ -68,6 +68,15 @@
   letter-spacing: .05em;
 }
 
+.cursor {
+  display: inline-block;
+  animation: blink .7s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 .guideText {
   border-left: 3px solid $primary-color;
   padding-left: 1.25rem;

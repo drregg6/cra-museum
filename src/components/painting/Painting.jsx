@@ -68,22 +68,22 @@ const Painting = () => {
 						</div>
 					)}
 					<div className={styles.artGuide}>
-						{!artGuide && (
+						{artGuide === null && (
 							<button
 								className={styles.guideButton}
 								onClick={() => dispatch(generateArtGuide(painting))}
-								disabled={isLoadingGuide}
 							>
-								{isLoadingGuide ? 'Generating…' : '✦ AI Art Guide'}
+								✦ AI Art Guide
 							</button>
 						)}
-						{isLoadingGuide && <Loader />}
-						{artGuide && (
+						{artGuide === '' && <Loader />}
+						{artGuide !== null && artGuide !== '' && (
 							<div className={styles.guideText}>
 								<h3 className={styles.guideHeading}>✦ Art Guide</h3>
 								{artGuide.split('\n\n').map((para, i) => (
 									<p key={i}>{para}</p>
 								))}
+								{isLoadingGuide && <span className={styles.cursor}>▌</span>}
 							</div>
 						)}
 					</div>

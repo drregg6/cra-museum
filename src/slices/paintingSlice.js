@@ -9,20 +9,46 @@ export const fetchPainting = createAsyncThunk(
 	}
 );
 
-export const generateArtGuide = createAsyncThunk(
-	'painting/generateArtGuide',
-	async (painting) => {
-		const res = await axios.post(`${import.meta.env.VITE_API_URL || ''}/api/art-guide`, {
-			title: painting.title,
-			artist_title: painting.artist_title,
-			date_display: painting.date_display,
-			place_of_origin: painting.place_of_origin,
-			medium_display: painting.medium_display,
-			description: painting.description,
+export const generateArtGuide = (painting) => async (dispatch) => {
+	dispatch(artGuideStarted());
+	try {
+		const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/art-guide`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				title: painting.title,
+				artist_title: painting.artist_title,
+				date_display: painting.date_display,
+				place_of_origin: painting.place_of_origin,
+				medium_display: painting.medium_display,
+				description: painting.description,
+			}),
 		});
-		return res.data.guide;
+
+		const reader = response.body.getReader();
+		const decoder = new TextDecoder();
+
+		while (true) {
+			const { done, value } = await reader.read();
+			if (done) break;
+
+			const chunk = decoder.decode(value, { stream: true });
+			for (const line of chunk.split('\n\n')) {
+				if (!line.startsWith('data: ')) continue;
+				const data = line.slice(6).trim();
+				if (data === '[DONE]') continue;
+				try {
+					const { text } = JSON.parse(data);
+					if (text) dispatch(artGuideChunkReceived(text));
+				} catch {}
+			}
+		}
+		dispatch(artGuideCompleted());
+	} catch (error) {
+		console.error(error);
+		dispatch(artGuideError());
 	}
-);
+};
 
 const paintingSlice = createSlice({
 	name: 'painting',
@@ -35,6 +61,20 @@ const paintingSlice = createSlice({
 	reducers: {
 		clearPainting: (state) => {
 			state.painting = null;
+			state.artGuide = null;
+		},
+		artGuideStarted: (state) => {
+			state.isLoadingGuide = true;
+			state.artGuide = '';
+		},
+		artGuideChunkReceived: (state, action) => {
+			state.artGuide += action.payload;
+		},
+		artGuideCompleted: (state) => {
+			state.isLoadingGuide = false;
+		},
+		artGuideError: (state) => {
+			state.isLoadingGuide = false;
 			state.artGuide = null;
 		},
 	},
@@ -51,20 +91,10 @@ const paintingSlice = createSlice({
 			})
 			.addCase(fetchPainting.rejected, (state) => {
 				state.isLoading = false;
-			})
-			.addCase(generateArtGuide.pending, (state) => {
-				state.isLoadingGuide = true;
-				state.artGuide = null;
-			})
-			.addCase(generateArtGuide.fulfilled, (state, action) => {
-				state.artGuide = action.payload;
-				state.isLoadingGuide = false;
-			})
-			.addCase(generateArtGuide.rejected, (state) => {
-				state.isLoadingGuide = false;
 			});
 	},
 });
 
-export const { clearPainting } = paintingSlice.actions;
+export const { clearPainting, artGuideStarted, artGuideChunkReceived, artGuideCompleted, artGuideError } =
+	paintingSlice.actions;
 export default paintingSlice.reducer;

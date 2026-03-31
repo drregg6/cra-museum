@@ -25,37 +25,53 @@ app.use(
 );
 app.use(express.json());
 
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
 app.post('/api/art-guide', async (req, res) => {
 	const { title, artist_title, date_display, place_of_origin, medium_display, description } =
 		req.body;
 
+	const prompt = [
+		`You are an engaging museum audio guide. Write 2–3 paragraphs about the following artwork that would fascinate and educate a visitor.`,
+		`Include historical context, what makes this piece artistically significant, and something surprising or personal about it.`,
+		`Keep the tone conversational and accessible — no jargon. Respond with only the narrative, no headings or labels.\n`,
+		`Title: ${title}`,
+		artist_title ? `Artist: ${artist_title}` : null,
+		date_display ? `Date: ${date_display}` : null,
+		place_of_origin ? `Place of Origin: ${place_of_origin}` : null,
+		medium_display ? `Medium: ${medium_display}` : null,
+		description ? `Museum Description: ${description.replace(/<[^>]*>/g, '')}` : null,
+	]
+		.filter(Boolean)
+		.join('\n');
+
+	res.setHeader('Content-Type', 'text/event-stream');
+	res.setHeader('Cache-Control', 'no-cache');
+	res.setHeader('Connection', 'keep-alive');
+
 	try {
-		const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-		const prompt = [
-			`You are an engaging museum audio guide. Write 2–3 paragraphs about the following artwork that would fascinate and educate a visitor.`,
-			`Include historical context, what makes this piece artistically significant, and something surprising or personal about it.`,
-			`Keep the tone conversational and accessible — no jargon. Respond with only the narrative, no headings or labels.\n`,
-			`Title: ${title}`,
-			artist_title ? `Artist: ${artist_title}` : null,
-			date_display ? `Date: ${date_display}` : null,
-			place_of_origin ? `Place of Origin: ${place_of_origin}` : null,
-			medium_display ? `Medium: ${medium_display}` : null,
-			description ? `Museum Description: ${description.replace(/<[^>]*>/g, '')}` : null,
-		]
-			.filter(Boolean)
-			.join('\n');
-
-		const message = await client.messages.create({
+		const stream = await client.messages.create({
 			model: process.env.ANTHROPIC_MODEL,
 			max_tokens: parseInt(process.env.ANTHROPIC_MAX_TOKENS),
 			messages: [{ role: 'user', content: prompt }],
+			stream: true,
 		});
 
-		res.json({ guide: message.content[0].text });
+		for await (const event of stream) {
+			if (
+				event.type === 'content_block_delta' &&
+				event.delta.type === 'text_delta'
+			) {
+				res.write(`data: ${JSON.stringify({ text: event.delta.text })}\n\n`);
+			}
+		}
+
+		res.write('data: [DONE]\n\n');
+		res.end();
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ error: 'Failed to generate art guide.' });
+		res.write(`data: ${JSON.stringify({ error: 'Failed to generate art guide.' })}\n\n`);
+		res.end();
 	}
 });
 
