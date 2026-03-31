@@ -1,23 +1,10 @@
 /*
 
 THANKS:
-= Rijksmuseum API
+= Art Institute of Chicago API (https://api.artic.edu/docs/)
 = TraversyMedia for Pagination tutorial
     - https://www.youtube.com/watch?v=IYCa1F-OWmk
 
-TODOS:
-= New API Docs: https://api.artic.edu/docs/#introduction
-= Chicago Endpoint: https://api.artic.edu/api/v1/artworks
-  - Example search: https://api.artic.edu/api/v1/artworks/search?params=%7B%22q%22%3A%22cats%22%2C%22query%22%3A%7B%22term%22%3A%7B%22is_public_domain%22%3Atrue%7D%7D%7D
-    * {"q":"cats","query":{"term":{"is_public_domain":true}}}
-  - https://api.artic.edu/api/v1/artworks/search?q=<term>&query[term][is_public_domain]=true&limit=2&fields=id,title,image_id
-    * Expand limit for more
-  - https://api.artic.edu/api/v1/artworks/<id>?fields=id,title,place_of_origin,medium_display,publication_history
-= IIIF Image Endpoint: data.config.iiif_url in return (https://www.artic.edu/iiif/2)
-  - Append data.image_id
-  - Then some more configs: /full/843,/0/default.jpg
-
-= IIIF is throwing a CORS error - need to use axios in useEffect to fetch the image and then set it as a blob url in state
 */
 
 import './App.scss';

@@ -6,4 +6,9 @@ export default defineConfig({
 	build: {
 		outDir: 'build',
 	},
+	server: {
+		proxy: {
+			'/api': `http://localhost:${process.env.PORT || 5000}`,
+		},
+	},
 });

@@ -4,9 +4,9 @@ import { strToUrl } from '../utils/strHelper';
 
 export const fetchPaintings = createAsyncThunk(
 	'paintings/fetchPaintings',
-	async (painter = 'rembrandt van rijn') => {
+	async (painter = 'claude monet') => {
 		const painterUrl = strToUrl(painter);
-		const url = `https://api.artic.edu/api/v1/artworks/search?q=${painterUrl}&query[term][is_public_domain]=true&limit=100&fields=id,title,image_id,artist_display`;
+		const url = `${import.meta.env.VITE_ART_API_BASE}/artworks/search?q=${painterUrl}&query[term][is_public_domain]=true&limit=100&fields=id,title,image_id,artist_display`;
 		const res = await axios.get(url);
 		return res.data.data;
 	},

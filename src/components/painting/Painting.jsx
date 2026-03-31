@@ -4,16 +4,18 @@ import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchPaintings } from '../../slices/paintingsSlice';
-import { fetchPainting } from '../../slices/paintingSlice';
+import { fetchPainting, generateArtGuide } from '../../slices/paintingSlice';
 import { addPainter } from '../../slices/historySlice';
 
 import Loader from '../loader/Loader';
 
-const IIIF_BASE = 'https://www.artic.edu/iiif/2';
+const IIIF_BASE = import.meta.env.VITE_IIIF_BASE;
 
 const Painting = () => {
 	const dispatch = useDispatch();
-	const { painting, isLoading } = useSelector((state) => state.painting);
+	const { painting, isLoading, artGuide, isLoadingGuide } = useSelector(
+		(state) => state.painting
+	);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -65,6 +67,26 @@ const Painting = () => {
 							<span>{painting.medium_display}</span>
 						</div>
 					)}
+					<div className={styles.artGuide}>
+						{!artGuide && (
+							<button
+								className={styles.guideButton}
+								onClick={() => dispatch(generateArtGuide(painting))}
+								disabled={isLoadingGuide}
+							>
+								{isLoadingGuide ? 'Generating…' : '✦ AI Art Guide'}
+							</button>
+						)}
+						{isLoadingGuide && <Loader />}
+						{artGuide && (
+							<div className={styles.guideText}>
+								<h3 className={styles.guideHeading}>✦ Art Guide</h3>
+								{artGuide.split('\n\n').map((para, i) => (
+									<p key={i}>{para}</p>
+								))}
+							</div>
+						)}
+					</div>
 				</>
 			) : (
 				<p>Painting not found.</p>

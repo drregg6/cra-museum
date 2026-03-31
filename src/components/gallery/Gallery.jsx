@@ -6,7 +6,7 @@ import Card from './Card';
 import Pagination from './Pagination';
 import Loader from '../loader/Loader';
 
-const IIIF_BASE = 'https://www.artic.edu/iiif/2';
+const IIIF_BASE = import.meta.env.VITE_IIIF_BASE;
 
 const Gallery = () => {
 	const { paintings, isLoading } = useSelector((state) => state.paintings);
