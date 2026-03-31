@@ -27,15 +27,21 @@ export const generateArtGuide = (painting) => async (dispatch) => {
 
 		const reader = response.body.getReader();
 		const decoder = new TextDecoder();
+		let buffer = '';
 
 		while (true) {
 			const { done, value } = await reader.read();
 			if (done) break;
 
-			const chunk = decoder.decode(value, { stream: true });
-			for (const line of chunk.split('\n\n')) {
-				if (!line.startsWith('data: ')) continue;
-				const data = line.slice(6).trim();
+			buffer += decoder.decode(value, { stream: true });
+
+			// Only process complete SSE messages (terminated by \n\n)
+			const messages = buffer.split('\n\n');
+			buffer = messages.pop(); // keep trailing incomplete chunk
+
+			for (const message of messages) {
+				if (!message.startsWith('data: ')) continue;
+				const data = message.slice(6).trim();
 				if (data === '[DONE]') continue;
 				try {
 					const { text } = JSON.parse(data);
