@@ -6,7 +6,23 @@ const path = require('path');
 const Anthropic = require('@anthropic-ai/sdk');
 const port = process.env.PORT || 5000;
 
-app.use(cors({ origin: process.env.NETLIFY_URL || 'http://localhost:5173' }));
+const allowedOrigins = [
+	'http://localhost:5173',
+	process.env.NETLIFY_URL,
+].filter(Boolean);
+
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			// Allow requests with no origin (e.g. curl, Postman, server-to-server)
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error(`CORS: origin ${origin} not allowed`));
+			}
+		},
+	})
+);
 app.use(express.json());
 
 app.post('/api/art-guide', async (req, res) => {
